@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 11
+names: ['IC', 'blue_led', 'capacitor', 'ceramic_capacitor', 'diode', 'diode_smd_orange', 'green_led', 'led', 'red_led', 'resistor', 'transistor']
+
+roboflow:
+  workspace: karol-chmco
+  project: kicad-electronic-detection-enll3
+  version: 3
+  license: Public Domain
+  url: https://universe.roboflow.com/karol-chmco/kicad-electronic-detection-enll3/dataset/3

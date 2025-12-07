@@ -1,0 +1,287 @@
+PS C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015> ^C
+PS C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015> C:/Users/huenk/Downloads/pcbb.v2i.yolov8_20251015/.venv/Scripts/python.exe smoke_test.py
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.2.6 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015\smoke_test.py", line 17, in <module>
+    check(p)
+  File "C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015\smoke_test.py", line 8, in check
+    m = importlib.import_module(pkg)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)       
+  File "C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015\.venv\Lib\site-packages\ultralytics\__init__.py", line 5, in <module>
+    from ultralytics.data.explorer.explorer import Explorer
+  File "C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015\.venv\Lib\site-packages\ultralytics\data\__init__.py", line 3, in <module>        
+    from .base import BaseDataset
+  File "C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015\.venv\Lib\site-packages\ultralytics\data\base.py", line 15, in <module>
+    from torch.utils.data import Dataset
+  File "C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015\.venv\Lib\site-packages\torch\__init__.py", line 1382, in <module>
+    from .functional import *  # noqa: F403
+  File "C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015\.venv\Lib\site-packages\torch\functional.py", line 7, in <module>
+    import torch.nn.functional as F
+  File "C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015\.venv\Lib\site-packages\torch\nn\__init__.py", line 1, in <module>
+    from .modules import *  # noqa: F403
+  File "C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015\.venv\Lib\site-packages\torch\nn\modules\__init__.py", line 35, in <module>       
+    from .transformer import TransformerEncoder, TransformerDecoder, \
+  File "C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015\.venv\Lib\site-packages\torch\nn\modules\transformer.py", line 20, in <module>    
+    device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
+C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015\.venv\Lib\site-packages\torch\nn\modules\transformer.py:20: UserWarning: Failed to initialize NumPy: _ARRAY_API not found (Triggered internally at ..\torch\csrc\utils\tensor_numpy.cpp:84.)
+  device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
+ultralytics imported, version=8.1.0
+torch imported, version=2.1.0+cpu
+torchvision imported, version=0.16.0+cpu
+numpy imported, version=2.2.6
+cv2 imported, version=4.12.0
+PIL imported, version=11.3.0
+yaml imported, version=6.0.3
+PS C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015> ^C
+PS C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015> C:/Users/huenk/Downloads/pcbb.v2i.yolov8_20251015/.venv/Scripts/python.exe smoke_test.py
+ultralytics imported, version=8.1.0
+torch imported, version=2.1.0+cpu
+torchvision imported, version=0.16.0+cpu
+numpy imported, version=1.26.4
+cv2 imported, version=4.12.0
+PIL imported, version=11.3.0
+yaml imported, version=6.0.3
+PS C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015> C:/Users/huenk/Downloads/pcbb.v2i.yolov8_20251015/.venv/Scripts/python.exe -m py_compile export_onnx.py rpi_infer.py
+PS C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015> C:/Users/huenk/Downloads/pcbb.v2i.yolov8_20251015/.venv/Scripts/python.exe train.py --model yolov8n.pt --data data.yaml --epochs 1 --imgsz 640 --device cpu 
+Starting training: model=yolov8n.pt data=data.yaml epochs=1 imgsz=640 device=cpu
+Downloading https://github.com/ultralytics/assets/releases/download/v8.1.0/yolov8n.pt to 'yolov8n.pt'...
+100%|███████████████████████████| 6.23M/6.23M [00:00<00:00, 11.6MB/s]
+New https://pypi.org/project/ultralytics/8.3.214 available 😃 Update with 'pip install -U ultralytics'
+Ultralytics YOLOv8.1.0 🚀 Python-3.11.9 torch-2.1.0+cpu CPU (AMD Ryzen 5 5600H with Radeon Graphics)
+engine\trainer: task=detect, mode=train, model=yolov8n.pt, data=data.yaml, epochs=1, time=None, patience=50, batch=16, imgsz=640, save=True, save_period=-1, cache=False, device=cpu, workers=8, project=None, name=train, exist_ok=False, pretrained=True, optimizer=auto, verbose=True, seed=0, deterministic=True, single_cls=False, rect=False, cos_lr=False, close_mosaic=10, resume=False, amp=True, fraction=1.0, profile=False, freeze=None, multi_scale=False, overlap_mask=True, mask_ratio=4, dropout=0.0, val=True, split=val, save_json=False, save_hybrid=False, conf=None, iou=0.7, max_det=300, half=False, dnn=False, plots=True, source=None, vid_stride=1, stream_buffer=False, visualize=False, augment=False, agnostic_nms=False, classes=None, retina_masks=False, embed=None, show=False, save_frames=False, save_txt=False, save_conf=False, save_crop=False, show_labels=True, show_conf=True, show_boxes=True, line_width=None, format=torchscript, keras=False, optimize=False, int8=False, dynamic=False, simplify=False, opset=None, workspace=4, nms=False, lr0=0.01, lrf=0.01, momentum=0.937, weight_decay=0.0005, warmup_epochs=3.0, warmup_momentum=0.8, warmup_bias_lr=0.1, box=7.5, cls=0.5, dfl=1.5, pose=12.0, kobj=1.0, label_smoothing=0.0, nbs=64, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, degrees=0.0, translate=0.1, scale=0.5, shear=0.0, perspective=0.0, flipud=0.0, fliplr=0.5, mosaic=1.0, mixup=0.0, copy_paste=0.0, auto_augment=randaugment, erasing=0.4, crop_fraction=1.0, cfg=None, tracker=botsort.yaml, save_dir=runs\detect\train
+Downloading https://ultralytics.com/assets/Arial.ttf to 'C:\Users\huenk\AppData\Roaming\Ultralytics\Arial.ttf'...
+100%|█████████████████████████████| 755k/755k [00:00<00:00, 2.01MB/s]
+Overriding model.yaml nc=80 with nc=9
+
+                   from  n    params  module                          
+             arguments
+  0                  -1  1       464  ultralytics.nn.modules.conv.Conv             [3, 16, 3, 2]
+  1                  -1  1      4672  ultralytics.nn.modules.conv.Conv             [16, 32, 3, 2]
+  2                  -1  1      7360  ultralytics.nn.modules.block.C2f             [32, 32, 1, True]
+  3                  -1  1     18560  ultralytics.nn.modules.conv.Conv             [32, 64, 3, 2]
+  4                  -1  2     49664  ultralytics.nn.modules.block.C2f             [64, 64, 2, True]
+  5                  -1  1     73984  ultralytics.nn.modules.conv.Conv             [64, 128, 3, 2]
+  6                  -1  2    197632  ultralytics.nn.modules.block.C2f             [128, 128, 2, True]
+  7                  -1  1    295424  ultralytics.nn.modules.conv.Conv             [128, 256, 3, 2]
+  8                  -1  1    460288  ultralytics.nn.modules.block.C2f             [256, 256, 1, True]
+  9                  -1  1    164608  ultralytics.nn.modules.block.SPPF            [256, 256, 5]
+ 10                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']
+ 11             [-1, 6]  1         0  ultralytics.nn.modules.conv.Concat           [1]
+ 12                  -1  1    148224  ultralytics.nn.modules.block.C2f             [384, 128, 1]
+ 13                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']
+ 14             [-1, 4]  1         0  ultralytics.nn.modules.conv.Concat           [1]
+ 15                  -1  1     37248  ultralytics.nn.modules.block.C2f             [192, 64, 1]
+ 16                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]
+ 17            [-1, 12]  1         0  ultralytics.nn.modules.conv.Concat           [1]
+ 18                  -1  1    123648  ultralytics.nn.modules.block.C2f             [192, 128, 1]
+ 19                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]
+ 20             [-1, 9]  1         0  ultralytics.nn.modules.conv.Concat           [1]
+ 21                  -1  1    493056  ultralytics.nn.modules.block.C2f             [384, 256, 1]
+ 22        [15, 18, 21]  1    753067  ultralytics.nn.modules.head.Detect           [9, [64, 128, 256]]
+Model summary: 225 layers, 3012603 parameters, 3012587 gradients, 8.2 GFLOPs
+
+Transferred 319/355 items from pretrained weights
+Freezing layer 'model.22.dfl.conv.weight'
+train: Scanning C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015\tra
+train: New cache created: C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015\train\labels.cache
+val: Scanning C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015\valid
+val: New cache created: C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015\valid\labels.cache
+Plotting labels to runs\detect\train\labels.jpg... 
+optimizer: 'optimizer=auto' found, ignoring 'lr0=0.01' and 'momentum=0.937' and determining best 'optimizer', 'lr0' and 'momentum' automatically...
+optimizer: AdamW(lr=0.000769, momentum=0.9) with parameter groups 57 weight(decay=0.0), 64 weight(decay=0.0005), 63 bias(decay=0.0)
+1 epochs...
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+  0%|          | 0/4 [00:13<?, ?it/s]
+Traceback (most recent call last):
+  File "C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015\train.py", line 39, in <module>
+    main()
+  File "C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015\train.py", line 35, in main
+    model.train(**train_kwargs, device=args.device)
+  File "C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015\.venv\Lib\site-packages\ultralytics\engine\model.py", line 390, in train
+    self.trainer.train()
+  File "C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015\.venv\Lib\site-packages\ultralytics\engine\trainer.py", line 208, in train        
+    self._do_train(world_size)
+  File "C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015\.venv\Lib\site-packages\ultralytics\engine\trainer.py", line 379, in _do_train    
+    self.loss, self.loss_items = self.model(batch)
+                                 ^^^^^^^^^^^^^^^^^
+  File "C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015\.venv\Lib\site-packages\torch\nn\modules\module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015\.venv\Lib\site-packages\torch\nn\modules\module.py", line 1527, in _call_impl     
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015\.venv\Lib\site-packages\ultralytics\nn\tasks.py", line 79, in forward
+    return self.loss(x, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015\.venv\Lib\site-packages\ultralytics\nn\tasks.py", line 258, in loss
+    return self.criterion(preds, batch)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015\.venv\Lib\site-packages\ultralytics\utils\loss.py", line 220, in __call__
+    _, target_bboxes, target_scores, fg_mask, _ = self.assigner(
+                                                  ^^^^^^^^^^^^^^
+  File "C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015\.venv\Lib\site-packages\torch\nn\modules\module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015\.venv\Lib\site-packages\torch\nn\modules\module.py", line 1527, in _call_impl     
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015\.venv\Lib\site-packages\torch\utils\_contextlib.py", line 115, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015\.venv\Lib\site-packages\ultralytics\utils\tal.py", line 72, in forward
+    mask_pos, align_metric, overlaps = self.get_pos_mask(
+                                       ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015\.venv\Lib\site-packages\ultralytics\utils\tal.py", line 94, in get_pos_mask       
+    align_metric, overlaps = self.get_box_metrics(pd_scores, pd_bboxes, gt_labels, gt_bboxes, mask_in_gts * mask_gt)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015\.venv\Lib\site-packages\ultralytics\utils\tal.py", line 120, in get_box_metrics   
+    align_metric = bbox_scores.pow(self.alpha) * overlaps.pow(self.beta)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+PS C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015> C:/Users/huenk/Downloads/pcbb.v2i.yolov8_20251015/.venv/Scripts/python.exe -m py_compile train_full.py export_onnx.py rpi_infer.py
+PS C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015> C:/Users/huenk/Downloads/pcbb.v2i.yolov8_20251015/.venv/Scripts/python.exe -m py_compile list_weights.py train_and_export.py
+PS C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015> C:/Users/huenk/Downloads/pcbb.v2i.yolov8_20251015/.venv/Scripts/python.exe list_weights.py
+Found weight files:
+- yolov8n.pt
+PS C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015> C:/Users/huenk/Downloads/pcbb.v2i.yolov8_20251015/.venv/Scripts/python.exe -m py_compile train_and_export.py
+PS C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015> C:/Users/huenk/Downloads/pcbb.v2i.yolov8_20251015/.venv/Scripts/python.exe train_and_export.py --model yolov8n.pt --data data.yaml --epochs 3 --imgsz 640 --device cpu --name pcbb_run --save_period 1
+Will save to runs\train\pcbb_run
+New https://pypi.org/project/ultralytics/8.3.214 available 😃 Update with 'pip install -U ultralytics'
+Ultralytics YOLOv8.1.0 🚀 Python-3.11.9 torch-2.1.0+cpu CPU (AMD Ryzen 5 5600H with Radeon Graphics)
+engine\trainer: task=detect, mode=train, model=yolov8n.pt, data=data.yaml, epochs=3, time=None, patience=50, batch=16, imgsz=640, save=True, save_period=1, cache=False, device=cpu, workers=8, project=runs/train, name=pcbb_run, exist_ok=False, pretrained=True, optimizer=auto, verbose=True, seed=0, deterministic=True, single_cls=False, rect=False, cos_lr=False, close_mosaic=10, resume=False, amp=True, fraction=1.0, profile=False, freeze=None, multi_scale=False, overlap_mask=True, mask_ratio=4, dropout=0.0, val=True, split=val, save_json=False, save_hybrid=False, conf=None, iou=0.7, max_det=300, half=False, dnn=False, plots=True, source=None, vid_stride=1, stream_buffer=False, visualize=False, augment=False, agnostic_nms=False, classes=None, retina_masks=False, embed=None, show=False, save_frames=False, save_txt=False, save_conf=False, save_crop=False, show_labels=True, show_conf=True, show_boxes=True, line_width=None, format=torchscript, keras=False, optimize=False, int8=False, dynamic=False, simplify=False, opset=None, workspace=4, nms=False, lr0=0.01, lrf=0.01, momentum=0.937, weight_decay=0.0005, warmup_epochs=3.0, warmup_momentum=0.8, warmup_bias_lr=0.1, box=7.5, cls=0.5, dfl=1.5, pose=12.0, kobj=1.0, label_smoothing=0.0, nbs=64, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, degrees=0.0, translate=0.1, scale=0.5, shear=0.0, perspective=0.0, flipud=0.0, fliplr=0.5, mosaic=1.0, mixup=0.0, copy_paste=0.0, auto_augment=randaugment, erasing=0.4, crop_fraction=1.0, cfg=None, tracker=botsort.yaml, save_dir=runs\train\pcbb_run     
+Overriding model.yaml nc=80 with nc=9
+
+                   from  n    params  module                          
+             arguments
+  0                  -1  1       464  ultralytics.nn.modules.conv.Conv             [3, 16, 3, 2]
+  1                  -1  1      4672  ultralytics.nn.modules.conv.Conv             [16, 32, 3, 2]
+  2                  -1  1      7360  ultralytics.nn.modules.block.C2f             [32, 32, 1, True]
+  3                  -1  1     18560  ultralytics.nn.modules.conv.Conv             [32, 64, 3, 2]
+  4                  -1  2     49664  ultralytics.nn.modules.block.C2f             [64, 64, 2, True]
+  5                  -1  1     73984  ultralytics.nn.modules.conv.Conv             [64, 128, 3, 2]
+  6                  -1  2    197632  ultralytics.nn.modules.block.C2f             [128, 128, 2, True]
+  7                  -1  1    295424  ultralytics.nn.modules.conv.Conv             [128, 256, 3, 2]
+  8                  -1  1    460288  ultralytics.nn.modules.block.C2f             [256, 256, 1, True]
+  9                  -1  1    164608  ultralytics.nn.modules.block.SPPF            [256, 256, 5]
+ 10                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']
+ 11             [-1, 6]  1         0  ultralytics.nn.modules.conv.Concat           [1]
+ 12                  -1  1    148224  ultralytics.nn.modules.block.C2f             [384, 128, 1]
+ 13                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']
+ 14             [-1, 4]  1         0  ultralytics.nn.modules.conv.Concat           [1]
+ 15                  -1  1     37248  ultralytics.nn.modules.block.C2f             [192, 64, 1]
+ 16                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]
+ 17            [-1, 12]  1         0  ultralytics.nn.modules.conv.Concat           [1]
+ 18                  -1  1    123648  ultralytics.nn.modules.block.C2f             [192, 128, 1]
+ 19                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]
+ 20             [-1, 9]  1         0  ultralytics.nn.modules.conv.Concat           [1]
+ 21                  -1  1    493056  ultralytics.nn.modules.block.C2f            Model summary: 225 layers, 3012603 parameters, 3012587 gradients, 8.2 GFLOPs      
+
+Transferred 319/355 items from pretrained weights
+Freezing layer 'model.22.dfl.conv.weight'
+train: Scanning C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015\tra
+val: Scanning C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015\valid
+Plotting labels to runs\train\pcbb_run\labels.jpg...
+optimizer: 'optimizer=auto' found, ignoring 'lr0=0.01' and 'momentum=0.937' and determining best 'optimizer', 'lr0' and 'momentum' automatically...
+optimizer: AdamW(lr=0.000769, momentum=0.9) with parameter groups 57 weight(decay=0.0), 64 weight(decay=0.0005), 63 bias(decay=0.0)
+3 epochs...
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size     
+        1/3         0G      2.027      4.463      1.633        156   
+                 Class     Images  Instances      Box(P          R      mAP50  mA
+                   all          6         50   0.000256     0.0139    0.00299    0.00149
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size     
+        2/3         0G      2.083      4.409      1.684        131        640: 10
+                 Class     Images  Instances      Box(P          R      mAP50  mA 
+                   all          6         50   0.000501     0.0278    0.00757    0.00231
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size     
+        3/3         0G      1.973      4.377      1.546        225        640: 10
+                 Class     Images  Instances      Box(P          R      mAP50  mA 
+                   all          6         50   0.000812     0.0417     0.0036    0.00159
+
+3 epochs completed in 0.021 hours.
+Optimizer stripped from runs\train\pcbb_run\weights\last.pt, 6.2MB
+Optimizer stripped from runs\train\pcbb_run\weights\best.pt, 6.2MB
+
+Validating runs\train\pcbb_run\weights\best.pt...
+Ultralytics YOLOv8.1.0 🚀 Python-3.11.9 torch-2.1.0+cpu CPU (AMD Ryzen 5 5600H with Radeon Graphics)
+Model summary (fused): 168 layers, 3007403 parameters, 0 gradients, 8.1 GFLOPs
+                 Class     Images  Instances      Box(P          R      mAP50  mA
+                   all          6         50   0.000503     0.0278    0.00757    0.00232
+                    IC          6          2          0          0          0          0
+              blue_led          6          2          0          0          0          0
+             capacitor          6          9    0.00402      0.222     0.0605     0.0185
+     ceramic_capacitor          6          2          0          0          0          0
+                 diode          6          8          0          0          0          0
+              resistor          6         17          0          0          0          0
+            transistor          6          8          0          0          0          0
+             white_led          6          2          0          0          0          0
+Speed: 10.8ms preprocess, 96.4ms inference, 0.0ms loss, 18.5ms postprocess per image
+Results saved to runs\train\pcbb_run
+Found checkpoint: runs\train\pcbb_run\weights\best.pt
+Exporting to runs\train\pcbb_run\best.onnx
+Traceback (most recent call last):
+  File "C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015\train_and_export.py", line 61, in <module>
+    main()
+  File "C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015\train_and_export.py", line 56, in main
+    model.export(format='onnx', opset=args.export_opset, save_path=str(onnx_out)) 
+  File "C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015\.venv\Lib\site-packages\ultralytics\engine\model.py", line 347, in export
+    return Exporter(overrides=args, _callbacks=self.callbacks)(model=self.model)  
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015\.venv\Lib\site-packages\ultralytics\engine\exporter.py", line 159, in __init__
+    self.args = get_cfg(cfg, overrides)
+                ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015\.venv\Lib\site-packages\ultralytics\cfg\__init__.py", line 210, in get_cfg
+    check_dict_alignment(cfg, overrides)
+  File "C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015\.venv\Lib\site-packages\ultralytics\cfg\__init__.py", line 308, in check_dict_alignment
+    raise SyntaxError(string + CLI_HELP_MSG) from e
+SyntaxError: 'save_path' is not a valid YOLO argument. Similar arguments are i.e. ['save_txt=False', 'save_crop=False', 'save=True'].
+
+    Arguments received: ['yolo', '--model', 'yolov8n.pt', '--data', 'data.yaml', '--epochs', '3', '--imgsz', '640', '--device', 'cpu', '--name', 'pcbb_run', '--save_period', '1']. Ultralytics 'yolo' commands use the following syntax:
+
+        yolo TASK MODE ARGS
+
+        Where   TASK (optional) is one of ('detect', 'segment', 'classify', 'pose', 'obb')
+                MODE (required) is one of ('train', 'val', 'predict', 'export', 'track', 'benchmark')
+                ARGS (optional) are any number of custom 'arg=value' pairs like 'imgsz=320' that override defaults.
+                    See all ARGS at https://docs.ultralytics.com/usage/cfg or with 'yolo cfg'
+
+    1. Train a detection model for 10 epochs with an initial learning_rate of 0.01
+        yolo train data=coco128.yaml model=yolov8n.pt epochs=10 lr0=0.01
+
+    2. Predict a YouTube video using a pretrained segmentation model at image size 320:
+        yolo predict model=yolov8n-seg.pt source='https://youtu.be/LNwODJXcvt4' imgsz=320
+
+    3. Val a pretrained detection model at batch-size 1 and image size 640:       
+        yolo val model=yolov8n.pt data=coco128.yaml batch=1 imgsz=640
+
+    4. Export a YOLOv8n classification model to ONNX format at image size 224 by 128 (no TASK required)
+        yolo export model=yolov8n-cls.pt format=onnx imgsz=224,128
+
+    6. Explore your datasets using semantic search and SQL with a simple GUI powered by Ultralytics Explorer API
+        yolo explorer
+
+    5. Run special commands:
+        yolo help
+        yolo checks
+        yolo version
+        yolo settings
+        yolo copy-cfg
+        yolo cfg
+
+    Docs: https://docs.ultralytics.com
+    Community: https://community.ultralytics.com
+    GitHub: https://github.com/ultralytics/ultralytics
+
+PS C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015> 

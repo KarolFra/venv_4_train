@@ -1,0 +1,25 @@
+names:
+- IC
+- blue_led
+- blue_led_off
+- blue_led_on
+- capacitor
+- ceramic_capacitor
+- diode
+- electronics
+- led
+- resistor
+- supply
+- transistor
+- white_led_off
+- white_led_on
+nc: 14
+roboflow:
+  license: MIT
+  project: pcbb-k8dth
+  url: https://universe.roboflow.com/karol-chmco/pcbb-k8dth/dataset/3
+  version: 3
+  workspace: karol-chmco
+test: C:\Users\huenk\Downloads\YOLOdataset_10_19\test\images
+train: C:\Users\huenk\Downloads\YOLOdataset_10_19\train\images
+val: C:\Users\huenk\Downloads\YOLOdataset_10_19\valid\images

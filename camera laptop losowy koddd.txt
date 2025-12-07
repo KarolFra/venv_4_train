@@ -1,0 +1,248 @@
+import time, platform
+from pathlib import Path
+import cv2, numpy as np
+from ultralytics import YOLO
+
+# Stała ścieżka do modelu
+WEIGHTS = r"C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015\runs\train\pcbb_run\weights20251015\best.pt"
+
+# Stałe parametry
+SOURCE = 0           # kamera
+IMGSZ = 640
+CONF = 0.25
+DEVICE = 'cpu'
+DEBUG = True
+SAVE = None          # np. 'out.mp4' jeśli chcesz zapis
+
+def open_capture(src):
+    if isinstance(src, int) or (isinstance(src, str) and str(src).isdigit()):
+        idx = int(src)
+        if platform.system().lower().startswith('win'):
+            return cv2.VideoCapture(idx, cv2.CAP_DSHOW)
+        return cv2.VideoCapture(idx)
+    return cv2.VideoCapture(src)
+
+
+def main():
+    cap = open_capture(SOURCE)
+    if not cap.isOpened():
+        print('Failed to open source:', SOURCE)
+        return
+
+    w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)) or 1280
+    h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT)) or 720
+    writer = None
+    if SAVE:
+        fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+        writer = cv2.VideoWriter(SAVE, fourcc, 20.0, (w, h))
+
+    model = YOLO(str(Path(WEIGHTS)))
+    if DEBUG:
+        print('Model classes:', getattr(model, 'names', None))
+
+    prev = 0.0
+    while True:
+        ok, frame = cap.read()
+        if not ok:
+            break
+
+        now = time.time()
+        dt = (now - prev) if prev else 0.0
+        prev = now
+
+        res = model.predict(source=frame, imgsz=IMGSZ, conf=CONF, device=DEVICE, verbose=DEBUG)
+        r = res[0]
+        rgb = r.plot()
+        bgr = np.ascontiguousarray(rgb[:, :, ::-1])
+
+        if dt > 0:
+            cv2.putText(bgr, f'FPS: {1/dt:.1f}', (10, 30),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.8, (50, 255, 50), 2)
+
+        cv2.imshow('YOLO PT Camera', bgr)
+        if writer: writer.write(bgr)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+
+    cap.release()
+    if writer: writer.release()
+    cv2.destroyAllWindows()
+
+
+if __name__ == '__main__':
+    main()
+
+import argparse, time, platform
+from pathlib import Path
+import cv2, numpy as np
+from ultralytics import YOLO
+
+
+def parse_args():
+    p = argparse.ArgumentParser(description='YOLOv8 camera demo with debug overlay')
+    p.add_argument('--model', '-m', required=True, help='Path to .pt weights')
+    p.add_argument('--source', '-s', default=0, help='Camera index or video path')
+    p.add_argument('--imgsz', type=int, default=640)
+    p.add_argument('--conf', type=float, default=0.25)
+    p.add_argument('--device', default='cpu', help="e.g. 'cpu', '0', '0,1'")
+    p.add_argument('--debug', action='store_true', help='Print and overlay debug info')
+    p.add_argument('--save', nargs='?', const='out.mp4', help='Optional output video path')
+    return p.parse_args()
+
+
+def open_capture(src):
+    # digit-like source -> webcam index
+    if isinstance(src, int) or (isinstance(src, str) and str(src).isdigit()):
+        idx = int(src)
+        if platform.system().lower().startswith('win'):
+            return cv2.VideoCapture(idx, cv2.CAP_DSHOW)  # DirectShow on Windows
+        return cv2.VideoCapture(idx)
+    return cv2.VideoCapture(src)
+
+
+def main():
+    a = parse_args()
+    cap = open_capture(a.source)
+    if not cap.isOpened():
+        print('Failed to open source:', a.source)
+        return
+
+    w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)) or 1280
+    h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT)) or 720
+    writer = None
+    if a.save:
+        fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+        writer = cv2.VideoWriter(a.save, fourcc, 20.0, (w, h))
+
+    model = YOLO(str(Path(a.model)))
+    if a.debug:
+        try:
+            names = model.names if hasattr(model, 'names') else None
+            if names:
+                print('Model classes:', names)
+        except Exception as e:
+            print('Debug: unable to read model names:', e)
+
+    prev = 0.0
+    while True:
+        ok, frame = cap.read()
+        if not ok:
+            break
+
+        now = time.time()
+        dt = (now - prev) if prev else 0.0
+        prev = now
+
+        # inference (.pt)
+        res = model.predict(source=frame, imgsz=a.imgsz, conf=a.conf, device=a.device, verbose=a.debug)
+        r = res[0]
+        rgb = r.plot()                         # RGB
+        bgr = np.ascontiguousarray(rgb[:, :, ::-1])  # RGB->BGR + contiguous
+
+        # FPS overlay
+        if dt > 0:
+            cv2.putText(bgr, f'FPS: {1/dt:.1f}', (10, 30),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.8, (50, 255, 50), 2)
+
+        # Debug overlay: counts and top predictions
+        if a.debug:
+            try:
+                boxes = r.boxes
+                n = int(len(boxes)) if boxes is not None else 0
+                names = r.names if hasattr(r, 'names') else getattr(model, 'names', {})
+                cv2.putText(bgr, f'Detections: {n}  conf>={a.conf}', (10, 55),
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255,255,0), 2)
+
+                if n:
+                    cls = boxes.cls.detach().cpu().numpy().astype(int)
+                    confs = boxes.conf.detach().cpu().numpy()
+                    # Counts per class (show up to 3)
+                    uniq = np.unique(cls)
+                    summary = []
+                    for c in uniq[:3]:
+                        cname = names.get(int(c), str(int(c))) if isinstance(names, dict) else str(int(c))
+                        cnt = int((cls == c).sum())
+                        summary.append(f"{cname}:{cnt}")
+                    cv2.putText(bgr, ' | '.join(summary), (10, 80),
+                                cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255,255,0), 2)
+
+                    # Top 3 predictions by confidence
+                    order = np.argsort(-confs)[:3]
+                    for i, idx in enumerate(order):
+                        cname = names.get(int(cls[idx]), str(int(cls[idx]))) if isinstance(names, dict) else str(int(cls[idx]))
+                        cv2.putText(bgr, f"{i+1}. {cname} {confs[idx]:.2f}", (10, 105 + 20*i),
+                                    cv2.FONT_HERSHEY_SIMPLEX, 0.6, (200,200,255), 2)
+
+                # Speeds from Ultralytics
+                if hasattr(r, 'speed') and isinstance(r.speed, dict):
+                    sp = r.speed
+                    txt = f"pre:{sp.get('preprocess',0):.1f}ms inf:{sp.get('inference',0):.1f}ms post:{sp.get('postprocess',0):.1f}ms"
+                    cv2.putText(bgr, txt, (10, h - 15),
+                                cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0,255,255), 2)
+
+                # Console log for deeper debug
+                if n:
+                    print(f"Detections: {n}; top conf: {float(boxes.conf.max().cpu()):.3f}")
+                else:
+                    print("Detections: 0")
+            except Exception as e:
+                print('Debug overlay error:', e)
+
+        cv2.imshow('YOLO PT Camera', bgr)
+        if writer: writer.write(bgr)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+
+    cap.release()
+    if writer: writer.release()
+    cv2.destroyAllWindows()
+
+
+if __name__ == '__main__':
+    main()
+
+# image_infer_fixed.py
+# Twarde ścieżki: model .pt i pojedyncze zdjęcie. Zapisuje pod *_pred.jpg i pokazuje okno.
+
+from pathlib import Path
+import cv2
+import numpy as np
+from ultralytics import YOLO
+
+# --- KONFIG ---
+WEIGHTS = r"C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015\runs\train\pcbb_run\weights20251015\best.pt"
+IMAGE   = r"C:\Users\huenk\Downloads\Zrzut ekranu 2025-10-15 230507.png"
+IMGSZ   = 640
+CONF    = 0.25
+# -------------
+
+def main():
+    img = cv2.imread(IMAGE)
+    if img is None:
+        raise FileNotFoundError(f"Nie mogę wczytać obrazu: {IMAGE}")
+
+    model = YOLO(WEIGHTS)
+    res = model.predict(source=img, imgsz=IMGSZ, conf=CONF, verbose=False)[0]
+
+    rgb = res.plot()                                  # RGB
+    bgr = np.ascontiguousarray(rgb[:, :, ::-1])       # RGB->BGR
+
+    out_path = str(Path(IMAGE).with_suffix("")) + "_pred.jpg"
+    cv2.imwrite(out_path, bgr)
+    print(f"Zapisano: {out_path}")
+
+    cv2.imshow("YOLO PT - wynik", bgr)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+if __name__ == "__main__":
+    main()
+v2.destroyAllWindows()
+
+if __name__ == "__main__":
+    main()
+
+python .\camera_demo.py --model "C:\Users\huenk\Downloads\pcbb.v2i.yolov8_20251015\runs\train\pcbb_long200\weights\epoch95.pt" --source 0 --imgsz 640
+
+
+

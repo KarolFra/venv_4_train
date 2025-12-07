@@ -1,0 +1,13 @@
+﻿train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 14
+names: ['IC', 'blue_led', 'blue_led_off', 'blue_led_on', 'capacitor', 'ceramic_capacitor', 'diode', 'electronics', 'led', 'resistor', 'supply', 'transistor', 'white_led_off', 'white_led_on']
+
+roboflow:
+  workspace: karol-chmco
+  project: pcbb-k8dth
+  version: 3
+  license: MIT
+  url: https://universe.roboflow.com/karol-chmco/pcbb-k8dth/dataset/3
