@@ -1,5 +1,14 @@
 .venv/
 __pycache__/
 *.pt
+*.jpg
+*.bat
+*.npy
 runs/
 *.log
+camera_demo.py
+export_onnx.py
+train.py
+camrea_demo.py
+.gitignore
+.gitignore
