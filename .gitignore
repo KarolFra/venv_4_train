@@ -5,10 +5,21 @@ __pycache__/
 *.bat
 *.npy
 runs/
+runs_train/
+train/
+test/
+valid/
+exports/
+*.onnx
+*.engine
+*.bin
+*.pth
 *.log
 camera_demo.py
 export_onnx.py
 train.py
 camrea_demo.py
-.gitignore
-.gitignore
+
+# keep curated artifacts we want to commit
+!selected_results/
+!selected_results/**
