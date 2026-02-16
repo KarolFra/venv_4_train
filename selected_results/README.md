@@ -10,3 +10,7 @@ Quick takeaway:
 - Both runs show limited real-world generalization because the dataset is tiny (61 images) and dominated by synthetic KiCad screenshots.
 - The KICADgood variant especially overfits to synthetic layouts; real-world validation samples are too few for the model to learn robust features.
 - Recommendation: collect substantially more real PCB photos, balance classes, and reserve a real-world validation split before further training.
+
+Additional assets:
+- extra_photos/ModelPhooto/: mixed design/reference shots (dashboards, schematics, PCB photos)
+- extra_photos/Results/: presentation renders and LED test photos
