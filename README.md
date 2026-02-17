@@ -1,4 +1,4 @@
-Most interesting results are in `selected_results/` (curated plots, predictions, and final thesis photos—no weights).
+Most interesting results are in `Final_results/` (curated plots, predictions, and final thesis photos—no weights).
 
 # YOLOv8 / YOLOv11 dataset runner
 
@@ -27,8 +27,8 @@ Raspberry Pi (4/5) tips
 - Use smaller `imgsz` (320–416) and batch size 1; set `OMP_NUM_THREADS` to limit CPU contention.
 
 Selected results
-- `selected_results/pcbb_v5i_yolo11s_e180` and `selected_results/KICADgood_v5i_yolo11s_e180`: key metrics, confusion matrices, val predictions.
-- `selected_results/extra_photos/` contains end-of-thesis reference photos/renders used for reporting.
+- `Final_results/pcbb_v5i_yolo11s_e180` and `Final_results/KICADgood_v5i_yolo11s_e180`: key metrics, confusion matrices, val predictions.
+- `Final_results/extra_photos/` contains end-of-thesis reference photos/renders used for reporting.
 
 Future work
 - Add ONNX int8 post-training quantization script.

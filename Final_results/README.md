@@ -12,5 +12,5 @@ Quick takeaway:
 - Recommendation: collect substantially more real PCB photos, balance classes, and reserve a real-world validation split before further training.
 
 Additional assets:
-- extra_photos/ModelPhooto/: mixed design/reference shots (dashboards, schematics, PCB photos)
-- extra_photos/Results/: presentation renders and LED test photos
+- experiment_artifacts/ModelPhooto/: mixed design/reference shots (dashboards, schematics, PCB photos)
+- experiment_artifacts/Results/: presentation renders and LED test photos
