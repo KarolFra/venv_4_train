@@ -4,18 +4,35 @@ Most interesting results are in `Final_results/` (curated plots, predictions, an
 
 <table>
   <tr>
-    <td><b>Dashboard</b><br><img src="Final_results/extra_photos/ModelPhoto/Dashboard_PCB.png" width="420"></td>
-    <td><b>Prototype stand</b><br><img src="Final_results/extra_photos/ModelPhoto/stanowiskoOswietlone.jpg" width="420"></td>
+    <td><b>Dashboard / API</b><br>
+      <a href="Final_results/experiment_artifacts/ModelPhoto/Dashboard_PCB.png">
+        <img src="https://raw.githubusercontent.com/KarolFra/venv_4_train/main/Final_results/experiment_artifacts/ModelPhoto/Dashboard_PCB.png" width="420">
+      </a>
+    </td>
+    <td><b>Prototype stand</b><br>
+      <a href="Final_results/Results/stanowiskoOswietlone.jpg">
+        <img src="https://raw.githubusercontent.com/KarolFra/venv_4_train/main/Final_results/Results/stanowiskoOswietlone.jpg" width="420">
+      </a>
+    </td>
   </tr>
   <tr>
-    <td><b>Mockup schematic</b><br><img src="Final_results/extra_photos/ModelPhoto/scheamtic_makieta.png" width="420"></td>
-    <td><b>KiCad 3D model</b><br><img src="Final_results/extra_photos/ModelPhoto/Kicad3D.png" width="420"></td>
+    <td><b>KiCad schematic system ESP32</b><br>
+      <a href="Final_results/experiment_artifacts/ModelPhoto/schematic_makieta.png">
+        <img src="https://raw.githubusercontent.com/KarolFra/venv_4_train/main/Final_results/experiment_artifacts/ModelPhoto/schematic_makieta.png" width="420">
+      </a>
+    </td>
+    <td><b>KiCad 3D model</b><br>
+      <a href="Final_results/experiment_artifacts/ModelPhoto/Kicad3D.png">
+        <img src="https://raw.githubusercontent.com/KarolFra/venv_4_train/main/Final_results/experiment_artifacts/ModelPhoto/Kicad3D.png" width="420">
+      </a>
+    </td>
   </tr>
 </table>
 
 <b>Final results (2x2)</b><br>
-<img src="Final_results/Results/obroconePlytki_2x2.png" width="600">
-
+<a href="Final_results/Results/obroconePlytki_2x2.png">
+  <img src="https://raw.githubusercontent.com/KarolFra/venv_4_train/main/Final_results/Results/obroconePlytki_2x2.png" width="700">
+</a>
 # YOLOv8 / YOLOv11 dataset runner
 
 Minimal scripts to train and run Ultralytics YOLOv8/YOLOv11 on your own dataset plus small helpers to prep models for Raspberry Pi 4/5.
