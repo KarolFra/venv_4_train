@@ -16,14 +16,14 @@ Most interesting results are in `Final_results/` (curated plots, predictions, an
     </td>
   </tr>
   <tr>
-    <td><b>KiCad schematic system ESP32</b><br>
+    <td><b>KiCad 3D model</b><br>
       <a href="Final_results/experiment_artifacts/ModelPhoto/schematic_makieta.png">
         <img src="Final_results/experiment_artifacts/ModelPhooto/Kicad3D.png" width="420">
       </a>
     </td>
-    <td><b>KiCad 3D model</b><br>
+    <td><b>KiCad schematic system ESP32</b><br>
       <a href="Final_results/experiment_artifacts/ModelPhoto/Kicad3D.png">
-        <img src="https://raw.githubusercontent.com/KarolFra/venv_4_train/main/Final_results/experiment_artifacts/ModelPhoto/Kicad3D.png" width="420">
+        <img src="Final_results/experiment_artifacts/ModelPhooto/schematic_makieta.png" width="420">
       </a>
     </td>
   </tr>
