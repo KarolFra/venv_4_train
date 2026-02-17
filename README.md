@@ -1,5 +1,21 @@
 Most interesting results are in `Final_results/` (curated plots, predictions, and final thesis photos—no weights).
 
+## Thesis / demo visuals
+
+<table>
+  <tr>
+    <td><b>Dashboard</b><br><img src="Final_results/extra_photos/ModelPhoto/Dashboard_PCB.png" width="420"></td>
+    <td><b>Prototype stand</b><br><img src="Final_results/extra_photos/ModelPhoto/stanowiskoOswietlone.jpg" width="420"></td>
+  </tr>
+  <tr>
+    <td><b>Mockup schematic</b><br><img src="Final_results/extra_photos/ModelPhoto/scheamtic_makieta.png" width="420"></td>
+    <td><b>KiCad 3D model</b><br><img src="Final_results/extra_photos/ModelPhoto/Kicad3D.png" width="420"></td>
+  </tr>
+</table>
+
+<b>Final results (2x2)</b><br>
+<img src="Final_results/Results/obroconePlytki_2x2.png" width="600">
+
 # YOLOv8 / YOLOv11 dataset runner
 
 Minimal scripts to train and run Ultralytics YOLOv8/YOLOv11 on your own dataset plus small helpers to prep models for Raspberry Pi 4/5.
